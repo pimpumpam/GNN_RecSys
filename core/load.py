@@ -11,19 +11,6 @@ class Loader:
         self.cfg_loader = cfg_loader
         
     def run(self):
-        """
-        데이터 불러오기.
-        Config 파일 내 경로 및 확장자 등을 참조하여 조건에 맞는 데이터 불러옴.
-        
-        parameter
-        ----------
-        None
-        
-        return
-        ----------
-        None
-        
-        """
         
         # load data
         print("[INFO] 💽 Loading Dataset")

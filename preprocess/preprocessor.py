@@ -268,7 +268,18 @@ def tabular_to_heteroGraph(data, graph_property):
 
 def edge_sampler(num_layers, negative_sampling=False, **kwargs):
     """
+    Edge prediction 모델 학습을 위한 sub graph sampler 생성
+
+    parameter
+    ----------
+    num_latyers(int): GNN 모델의 layer 개수
+    negative_sampling(bool): Negative edge 생성 여부
+    kwargs:
+        num_neg_samples(int): negative_sampling=True인 경우 생성 할 negative edge의 개수
     
+    return
+    ----------
+    (dgl.dataloading): GNN 모델의 layer 개수만큼의 sampling 된 sub graph
     """
     sampler = dgl.dataloading.MultiLayerFullNeighborSampler(num_layers)
     

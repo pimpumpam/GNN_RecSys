@@ -50,8 +50,6 @@ class Preprocessor:
             df=test_data,
             columns=self.graph_property['node']['user']['key']+self.graph_property['node']['item']['key'],
             inplace=True,
-#             save_pkl=True, 
-#             save_path=self.cfg_meta.static_dir
         )
         
         
@@ -75,14 +73,14 @@ class Preprocessor:
         
         print("[INFO]\t 3️⃣ Transform Dataframe to Graph")
         train_data[self.graph_property['edge']['event']['key'][0]] = train_data[self.graph_property['edge']['event']['key'][0]].map({'click_item': 'click',
-                                                                                               'like_item': 'like',
-                                                                                               'add_to_cart': 'cart',
-                                                                                               'purchase_success': 'buy'})
+                                                                                                                                     'like_item': 'like',
+                                                                                                                                     'add_to_cart': 'cart',
+                                                                                                                                     'purchase_success': 'buy'})
         
         test_data[self.graph_property['edge']['event']['key'][0]] = test_data[self.graph_property['edge']['event']['key'][0]].map({'click_item': 'click',
-                                                                                             'like_item': 'like',
-                                                                                             'add_to_cart': 'cart',
-                                                                                             'purchase_success': 'buy'})
+                                                                                                                                   'like_item': 'like',
+                                                                                                                                   'add_to_cart': 'cart',
+                                                                                                                                   'purchase_success': 'buy'})
         
         train_graph = tabular_to_heteroGraph(train_data, self.graph_property)
         test_graph = tabular_to_heteroGraph(test_data, self.graph_property)
@@ -96,8 +94,6 @@ class Preprocessor:
             test_graph,
             os.path.join(self.cfg_meta.static_dir, 'test_graph.dgl')
         )
-        
-#         return train_graph, test_graph
 
     
 if __name__ == "__main__":

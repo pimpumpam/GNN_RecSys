@@ -22,6 +22,11 @@ class Run():
             self.cfg_hyp,
             self.cfg_evaluate
         ) = load_spec_from_config(config_name)
+
+        mlflow.set_tracking_uri(self.cfg_meta.mlflow['DASHBOARD_URL'])
+        os.environ["MLFLOW_S3_ENDPOINT_URL"] = self.cfg_meta.s3['STORAGE_URL']
+        os.environ["AWS_ACCESS_KEY_ID"] = self.cfg_meta.s3['ACCESS_KEY']
+        os.environ["AWS_SECRET_ACCESS_KEY"] = self.cfg_meta.s3['SECRET_KEY']
         
         
     def load_data(self):

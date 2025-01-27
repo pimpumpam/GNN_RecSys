@@ -1,29 +1,29 @@
 class CfgMeta:
     name = 'Ecommerce-GCN'
     exp_name = 'dgl_ecommerce'
-    static_dir = '/data1/MLOps/MLFlow/ecommerce/static'
+    static_dir = '/서버내프로젝트경로/static'
     sqlite = {
-        'DATABASE_DIR': '/data1/MLOps/MLFlow/mlflow.db'
+        'DATABASE_DIR': '/서버내프로젝트경로/mlflow.db'
     }
     
     mlflow = {
-        'DASHBOARD_URL': 'http://192.168.150.103:8334',
+        'DASHBOARD_URL': '서버URL:포트번호',
         'ARTIFACT_DIR': 'ecommerce_gnn'
     }
     
     s3 = {
-        'STORAGE_URL': 'http://192.168.80.6:10080',
-        'ARTIFACT_DIR': 's3://ndap-test-public/Toby/MLFlow/Ecommerce',
-        'ACCESS_KEY': 'IAQ2BQ1EJKO326CIT445',
-        'SECRET_KEY': 'GRmUYDfsam48pHUyXVPARRRKbjon9UyEEuhQyqYJ',
-        'BUCKET_NAME': 'ndap-test-public'
+        'STORAGE_URL': '서버URL:포트번호',
+        'ARTIFACT_DIR': 's3://버킷이름/개인폴더경로',
+        'ACCESS_KEY': '보안접근키',
+        'SECRET_KEY': '보안비밀키',
+        'BUCKET_NAME': '버킷이름'
     }
     
 class CfgLoader:
     source = 'S3' # S3, local
     extension = 'feather'
-    train_data_dir = 'Toby/datasets/ecommerce/train'
-    test_data_dir = 'Toby/datasets/ecommerce/test'
+    train_data_dir = '/프로젝트경로/GNN_RecSys/datasets/train'
+    test_data_dir = '/프로젝트경로/GNN_RecSys/datasets/train'
     feature_field = ['event_name',
                      'user_no', 'gender', 'age', 'mobile_brand_name', 'region',
                      'item_no', 'price', 'brand_no', 'category_vector']

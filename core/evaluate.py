@@ -8,8 +8,6 @@ import torch
 
 import mlflow
 
-from airflow.models import Variable
-
 from preprocess.preprocessor import MultiColumnLabelEncoder, edge_sampler
 from evaluate.evaluate import evaluator
 from evaluate.metrics import precision_k, recall_k
@@ -23,22 +21,8 @@ class Evaluator:
         self.cfg_model = cfg_model
         self.cfg_evaluate = cfg_evaluate
         
-    def run(self, **kwargs):
-        """
-        학습 된 모델 평가 수행
+    def run(self):
         
-        parameter
-        ----------
-        test_dataset(dgl.heterograph): Test 데이터 셋
-        
-        return
-        ----------
-        None
-        
-        """
-        
-#         RUN_ID = Variable.get("run_id", default_var=None)
-        RUN_ID = kwargs['ti'].xcom_pull(key='run_id', task_ids='train_model')
         test_dataset = torch.load(os.path.join(self.cfg_meta.static_dir, 'test_graph.dgl'))
         
         print("[INFO] 🔬 Initialize Evaluate GNN Model")
@@ -104,12 +88,12 @@ class Evaluator:
                 true_ = true.loc[true[self.cfg_preprocessor.graph_property['node']['user']['key'][0]]==user, self.cfg_evaluate.evaluate_feature]
                 
                 precision = precision_k(pred_, true_, top_k=10)
-#                 recall = recall_k(pred_, true_)
+                recall = recall_k(pred_, true_)
                 
                 mlflow.log_metrics(
                     {
                         'Precision_K': precision,
-#                         'Recall_K': recall
+                        'Recall_K': recall
                     },
                     step=step
                 )

@@ -2,14 +2,23 @@ import torch
 import torch.nn as nn
 
 
-class HingeLoss(nn.Module):
+class MaxMarginLoss(nn.Module):
     
     def __init__(self):
-        super(HingeLoss, self).__init__()
+        super(MaxMarginLoss, self).__init__()
         
     def forward(self, pos_score, neg_score, margin=0.5):
         """
-        
+        Max margin loss 산출
+
+        parameter
+        ----------
+        pos_score(torch.Tensor): Positive edge에 대한 모델 학습 score
+        neg_score(torch.Tensor): Negative edge에 대한 모델 학습 score
+
+        return
+        ----------
+        (float): 산출 된 max margin loss 값
         """
         pos_score = torch.cat(list(pos_score.values()))
         neg_score = torch.cat(list(neg_score.values()))
