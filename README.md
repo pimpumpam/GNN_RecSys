@@ -1,8 +1,9 @@
 # GNN_RecSys
 
+---
+
 이 프로젝트는 Graph Neural Network(GNN)를 활용하여 추천 시스템을 구현한 모델입니다. 다양한 GNN 모델(GCN, GAT, GraphSAGE 등)을 실험하고, 데이터 전처리, 모델 학습, 평가를 포함한 전체 파이프라인을 제공합니다.
 
----
 
 ## 디렉토리 구조
 configs
@@ -17,7 +18,6 @@ train
 utils
 run.py
 
----
 
 ## 주요 기능
 
@@ -33,5 +33,3 @@ run.py
 
 4. **유틸리티**  
    - 공통적으로 사용되는 함수와 도구들은 `utils/utils.py`에서 제공합니다.
-
----
